@@ -1,0 +1,27 @@
+entity Scales {
+	good String
+    currentWaith Int
+}
+
+entity Notification {
+	title String
+   	text String
+	scales Scales
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Notification{scales} to Scales
+}
+
+// Set pagination options
+paginate Notification with infinite-scroll
+paginate Scales with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Notification, Scales
+// Set an angular suffix
+angularSuffix * with mySuffix
